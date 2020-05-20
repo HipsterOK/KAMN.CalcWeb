@@ -9,22 +9,20 @@ import java.util.ArrayList;
 
 import Objects.Users;
 
-public class FileReaderClass {
+public class FileReaderClass { //класс для рассчета 
 	 public static ArrayList<Users> usersObj = new ArrayList<>();
 	 
 	 public static void main() {
 		 String subStr;
 		 
 		 try {
-	            File file = new File("src/main/resources/info/users.txt");
-	            //создаем объект FileReader для объекта File
-	            FileReader fr = new FileReader(file);
-	            //создаем BufferedReader с существующего FileReader для построчного считывания
-	            BufferedReader reader = new BufferedReader(fr);
-	            // считаем сначала первую строку
+	            File file = new File("src/main/resources/info/users.txt"); //подключние файла с данными пользователей
+	            
+	            FileReader fr = new FileReader(file);//создаем объект FileReader для объекта File
+	            BufferedReader reader = new BufferedReader(fr); //создаем BufferedReader для построчного считывания
 	            String delimeter = ":"; // Разделитель
 	            while ((subStr = reader.readLine()) != null) {
-	                usersObj.add(new Users(subStr));
+	                usersObj.add(new Users(subStr)); //добавлять нового пользователя, пока след. строка не пустая
 	            }
 	            reader.close();
 	        } catch (FileNotFoundException e) {
@@ -32,6 +30,7 @@ public class FileReaderClass {
 	        } catch (IOException e) {
 	            e.printStackTrace();
 	        }
+		 /*Вывод данных в консоль для проверки*/
 		 for (int i=0; i<usersObj.size(); i++) {
 			    Users user = usersObj.get(i);
 			    System.out.println(user.getId() + " | " + user.getName() + " | " + user.getPassword() + " | " + user.getRole()+" | " + user.getOklad() + " | "+ user.getWorkTime(0));

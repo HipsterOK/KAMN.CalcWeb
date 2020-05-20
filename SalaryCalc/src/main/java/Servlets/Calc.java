@@ -13,7 +13,7 @@ import Other.Calculator;
 import Other.FileReaderClass;
 
 @WebServlet("/calc")
-public class Calc extends HttpServlet { //Класс для проверки введеных логина и пароля 
+public class Calc extends HttpServlet { //Сервлет для страницы калькулятора обычного работника
 	private static final long serialVersionUID = 1L;
 	public static int month;
 	public static String[] monthName = {"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
@@ -22,9 +22,9 @@ public class Calc extends HttpServlet { //Класс для проверки в�
 	  protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 	            throws ServletException, IOException {
 	         
-		  Login.selectedId = Login.sessionId;
+		  Login.selectedId = Login.sessionId; //контроль Id сессии
 			
-		  
+		  	/*атрибуты для вывода на экран*/
 	        request.setAttribute("name", FileReaderClass.usersObj.get(Login.selectedId).getName());
 	         
 	        getServletContext().getRequestDispatcher("/WEB-INF/views/calc.jsp").forward(request, response);

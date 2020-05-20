@@ -1,6 +1,6 @@
 package Objects;
 
-public class Users {
+public class Users { //класс объекта Пользователя
 	  private long id;
 	  private String name;
 	  private String password;
@@ -10,8 +10,8 @@ public class Users {
 	  private int[] workTime = new int[12];
 	  private int[] workTimeHours = new int[12];
 	  private float prem;
-	  
-	  public Users(String line) {
+
+	  public Users(String line) { //метод, разделяющий строки на отдельные данные каждого пользователя
 	        String[] users = line.split(":");
 	        id = Long.valueOf(users[0]);
 	        name = users[1];
@@ -28,6 +28,8 @@ public class Users {
 	        prem = Float.valueOf(users[30]);
 	    }
 	  
+	  /*Далее прописаны геттеры и сеттеры*/
+
 	  public long getId() {
 		  return id;
 	  }

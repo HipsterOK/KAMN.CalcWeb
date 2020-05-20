@@ -29,7 +29,7 @@ public class Login extends HttpServlet { //Класс для проверки в
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		if(!succesLoading) {
-			FileReaderClass.main();
+			FileReaderClass.main(); //проверка загрузки 
 			succesLoading = true;
 		}
 		
@@ -39,19 +39,17 @@ public class Login extends HttpServlet { //Класс для проверки в
         login = request.getParameter("login"); 
         password = request.getParameter("password");
         /*
-         * Вызов метода проверки введеных логина и пароля
-         * Если метод возвращает true, то пользователя перенаправляет на страницу калькулятора
+         * Выполнение метода проверки введенных данных
+         * Если данные правильные, то пользователя перенаправляет на страницу калькулятора
          * Иначе пользователю выводится ошибка
          */
         if(checkLogAndPass())
-        	if(FileReaderClass.usersObj.get(Integer.valueOf(login)).getRole() == 1) {
-        	response.sendRedirect("calcManager"); //Перенаправление на страницу калькулятора
-        	} else response.sendRedirect("calc"); //Перенаправление на страницу калькулятора
+        	if(FileReaderClass.usersObj.get(Integer.valueOf(login)).getRole() == 1) { //проверка роли пользователя
+        	response.sendRedirect("calcManager"); //Перенаправление на страницу калькулятора для менеджера (Бухгалтера)
+        	} else response.sendRedirect("calc"); //Перенаправление на страницу калькулятора для обычного работника
         else
         	/*
-    		 * Вывод ошибки, написанный в виде HTML-кода, 
-    		 * в котором реализована возможность возврата на страницу авторизации
-    		 * для повторной попытки входа
+    		 * Вывод страницы при неверных данных
     		 */
         	wr.println("<html>" +
         			"			<head>" + 
@@ -67,18 +65,17 @@ public class Login extends HttpServlet { //Класс для проверки в
         			"		</html>");
 	}
 	
-	public static boolean checkLogAndPass() throws IOException {//Метод проверки введенных логина и пароля; 
+	public static boolean checkLogAndPass() throws IOException {//Метод проверки введенных логина и пароля
 	    /*
-	     * Следующий цикл проверяет наличие введеных логина и пароля в текстовом файле
-	     * Если проверка успешна, то метод возвращает значение true 
+	     * Цикл для проверки введенных данных
 	     */
 	    for(int i=0; i<FileReaderClass.usersObj.size(); i++){ 
 	    	if(login.equals(String.valueOf(FileReaderClass.usersObj.get(i).getId())) && password.equals(FileReaderClass.usersObj.get(i).getPassword())) {
-	    		sessionId=i;
+	    		sessionId=i; // номер сессии равен Id пользователя
 	    		return true;
 	    	}	
 	    }
-		return false; //Возвращение значения false, если проверка прошла неудачно
+		return false; 
 	}
 }
 

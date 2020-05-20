@@ -13,13 +13,14 @@ import Other.Calculator;
 import Other.FileReaderClass;
 
 @WebServlet("/result")
-public class Result extends HttpServlet { //Класс для проверки введеных логина и пароля 
+public class Result extends HttpServlet { //Сервлет для страницы результата
 	private static final long serialVersionUID = 1L;
 	public static int month;
 
 	  protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 	            throws ServletException, IOException {
 		  
+			/*атрибуты для вывода на экран*/
 		    request.setAttribute("name", FileReaderClass.usersObj.get(Login.selectedId).getName()); 
 	        request.setAttribute("zp", Calculator.zp);
 	        if(FileReaderClass.usersObj.get(Login.sessionId).getRole()==0) {
