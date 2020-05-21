@@ -2,22 +2,12 @@ package Other;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
-import java.nio.channels.FileChannel;
-import java.nio.file.Files;
 import java.util.ArrayList;
 
-import javax.servlet.ServletContext;
-import javax.swing.JFileChooser;
-
 import Objects.Users;
-import Servlets.Login;
 
 public class FileReaderClass { //класс для рассчета 
 	
@@ -27,7 +17,7 @@ public class FileReaderClass { //класс для рассчета
 	 
 	 public static void main() {
 		 String subStr;
-		 String path = FileReaderClass.class.getClassLoader().getResource(".").getPath() + "/users.txt"; 
+		 String path = "src/main/webapp/WEB-INF/classes/users.txt"; 
 		 
          File f = new File(path);
              
@@ -36,7 +26,6 @@ public class FileReaderClass { //класс для рассчета
 		 try {
 	            FileReader fr = new FileReader(f);//создаем объект FileReader для объекта File
 	            BufferedReader reader = new BufferedReader(fr); //создаем BufferedReader для построчного считывания
-	            String delimeter = ":"; // Разделитель
 	            while ((subStr = reader.readLine()) != null) {
 	                usersObj.add(new Users(subStr)); //добавлять нового пользователя, пока след. строка не пустая
 	            }
