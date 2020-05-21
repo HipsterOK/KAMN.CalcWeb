@@ -31,12 +31,11 @@ public class CalcManager extends HttpServlet { //Сервлет для стра�
 	    }
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		response.setContentType("text/html; charset=UTF-8");
-        PrintWriter wr = response.getWriter();
-        monthMan = Integer.valueOf(request.getParameter("selectMonth")); 
-        Login.selectedId = Integer.valueOf(request.getParameter("selectUser")); 
-        Calculator.main(Login.selectedId, monthMan);
-        response.sendRedirect("result");
+			response.setContentType("text/html; charset=UTF-8");
+	        PrintWriter wr = response.getWriter();
+	        monthMan = Integer.valueOf(request.getParameter("selectMonth")); 
+	        Login.selectedId = Integer.valueOf(request.getParameter("selectUser")); 
+	        Calculator.main(Login.selectedId, monthMan);
+	        response.sendRedirect("result");
 	}
 }

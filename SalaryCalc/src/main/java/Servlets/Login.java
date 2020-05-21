@@ -2,6 +2,8 @@ package Servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,11 +20,8 @@ public class Login extends HttpServlet { //Класс для проверки в
 	public static int sessionId;
 	public static int selectedId;
 	public static boolean succesLoading;
-	public static int countSession=0;
 
 	 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	         
-	         
 	        getServletContext().getRequestDispatcher("/WEB-INF/views/login.html").forward(request, response);
 	    }
 	
@@ -43,11 +42,11 @@ public class Login extends HttpServlet { //Класс для проверки в
          * Если данные правильные, то пользователя перенаправляет на страницу калькулятора
          * Иначе пользователю выводится ошибка
          */
-        if(checkLogAndPass())
+        if(checkLogAndPass()) {
         	if(FileReaderClass.usersObj.get(Integer.valueOf(login)).getRole() == 1) { //проверка роли пользователя
         	response.sendRedirect("calcManager"); //Перенаправление на страницу калькулятора для менеджера (Бухгалтера)
         	} else response.sendRedirect("calc"); //Перенаправление на страницу калькулятора для обычного работника
-        else
+	}else
         	/*
     		 * Вывод страницы при неверных данных
     		 */
