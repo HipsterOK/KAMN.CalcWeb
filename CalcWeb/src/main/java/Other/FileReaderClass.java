@@ -17,7 +17,7 @@ public class FileReaderClass { //класс для рассчета
 	 
 	 public static void main() {
 		 String subStr;
-		 String path = "src/main/webapp/WEB-INF/classes/users.txt"; 
+		 String path = FileReaderClass.class.getClassLoader().getResource("").getPath() + "/users.txt"; 
 		 
          File f = new File(path);
              
